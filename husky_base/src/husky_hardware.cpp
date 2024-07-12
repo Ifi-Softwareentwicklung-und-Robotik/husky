@@ -101,16 +101,16 @@ namespace husky_base
   void HuskyHardware::limitDifferentialSpeed(double &diff_speed_left, double &diff_speed_right)
   {
     // check if the signs of the requested speeds dont match or if one of the sides is nearly standing still
-    if (((diff_speed_left * diff_speed_right) < 0) || ((diff_speed_left < 0.2 * max_speed_ || diff_speed_right < 0.2 * max_speed_)
-       && std::abs(diff_speed_right-diff_speed_left) > 0.2 * max_speed_))
+   if (((diff_speed_left * diff_speed_right) < 0) || ((diff_speed_left < 0.1 * max_speed_ || diff_speed_right < 0.1 * max_speed_)
+       && std::abs(diff_speed_right-diff_speed_left) > 0.4 * max_speed_))
     {
        if (std::abs(diff_speed_left) > std::abs(diff_speed_right))
        {
-         diff_speed_right = 0.4 * diff_speed_left;
+         diff_speed_right = 0.2 * diff_speed_left;
        }else{
-         diff_speed_left = 0.4 * diff_speed_right;
+         diff_speed_left = 0.2 * diff_speed_right;
        }
-    }
+    } 
 
     double large_speed = std::max(std::abs(diff_speed_left), std::abs(diff_speed_right));
 
